@@ -838,6 +838,7 @@ img.sportsfinda-log {
     .home-casestudy-btn {
         flex-direction: column;
         gap: 11px;
+        display:   flex;
     }
 }
 
@@ -848,11 +849,20 @@ img.sportsfinda-log {
     .contact-info p {
         flex-wrap: wrap;
     }
+    .case-item h2 {
+    font-size: 23px;
+}
     .main-heading {
-        font-size: 34px;
-        letter-spacing: -0.5px;
+        font-size: 29px;
+        letter-spacing: -1.5px;
         margin-bottom: 12px;
     }
+    .our_service {
+    padding: 40px 0;
+}
+.service_box .services-cards .card-title {
+    font-size: 24px;;
+}
     .clear-build-section .btn-primary-custom {
         margin-right: 0 !important;
         margin-bottom: 11px !important;
