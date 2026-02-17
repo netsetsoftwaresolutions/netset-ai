@@ -1,3 +1,80 @@
+<?php
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+require 'PHPMailer/src/Exception.php';
+require 'PHPMailer/src/PHPMailer.php';
+require 'PHPMailer/src/SMTP.php';
+
+$errors = [];
+$success = isset($_GET['success']);
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+    $name    = trim($_POST['name'] ?? '');
+    $email   = trim($_POST['email'] ?? '');
+    $phone   = trim($_POST['phone'] ?? '');
+    $message = trim($_POST['message'] ?? '');
+    $country = trim($_POST['countryCode'] ?? '');
+
+    // Validation
+    if (empty($name)) {
+        $errors['name'] = "Name is required";
+    }
+
+    if (empty($email)) {
+        $errors['email'] = "Email is required";
+    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $errors['email'] = "Invalid email format";
+    }
+
+    if (empty($phone)) {
+        $errors['phone'] = "Phone is required";
+    }
+
+    if (empty($message)) {
+        $errors['message'] = "Project details are required";
+    }
+
+    if (empty($errors)) {
+
+        $mail = new PHPMailer(true);
+
+        try {
+            $mail->isSMTP();
+            $mail->Host       = 'smtp.gmail.com';
+            $mail->SMTPAuth   = true;
+            $mail->Username   = 'sendmailnetset@gmail.com'; // CHANGE
+            $mail->Password   = 'ymueuqcsxdqynxnq';   // CHANGE
+            $mail->SMTPSecure = 'ssl';
+            $mail->Port       = 465;
+
+            $mail->setFrom('vishalguj@yopmail.com', 'NetSet AI');
+            $mail->addAddress('vishalguj@yopmail.com'); // Where you want to receive
+
+            $mail->isHTML(true);
+            $mail->Subject = 'New AI Consultation Request';
+
+            $mail->Body = "
+                <h3>New Inquiry</h3>
+                <b>Name:</b> $name <br>
+                <b>Email:</b> $email <br>
+                <b>Phone:</b> $phone <br><br>
+                <b>Project:</b><br> $message
+            ";
+
+            $mail->send();
+            header("Location: index.php?success=1");
+            exit();
+
+        } catch (Exception $e) {
+            $errors['general'] = "Mailer Error: " . $mail->ErrorInfo;
+        }
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -64,8 +141,18 @@
                             </h2>
                             <p class="text-white">Tell us your goals. We’ll respond with next steps and a practical
                                 plan.</p>
+                            <?php if ($success): ?>
+                                <div class="alert alert-success">
+                                    Thank you! Our AI expert will contact you shortly.
+                                </div>
+                            <?php endif; ?>
 
-                            <form id="build_plan_form">
+                            <?php if (!empty($errors['general'])): ?>
+                                <div class="alert alert-danger">
+                                    <?php echo $errors['general']; ?>
+                                </div>
+                            <?php endif; ?>
+                           <form id="build_plan_form" method="POST" action="">
                                 <div class="row">
                                 <div class="mb-2 col-md-6">
                                     <label for="name" class="form-label"
@@ -73,7 +160,9 @@
                                     <input type="text" class="form-control" name="name" id="name"
                                         placeholder="Your full name"
                                         style="border: 1px solid var(--border-color); padding: 8px;">
-                                    <small class="text-danger error" id="name_error"></small>
+                                    <small class="text-danger">
+                                        <?php echo $errors['name'] ?? ''; ?>
+                                    </small>
                                 </div>
 
                                 <div class="mb-2 col-md-6">
@@ -82,18 +171,22 @@
                                     <input type="email" class="form-control" id="email" name="email"
                                         placeholder="your@company.com"
                                         style="border: 1px solid var(--border-color); padding: 8px;">
-                                    <small class="text-danger error" id="email_error"></small>
+                                     <small class="text-danger">
+                                        <?php echo $errors['email'] ?? ''; ?>
+                                    </small>
                                 </div>
                                 </div>
 
                                 <div class="mb-2">
                                     <input type="hidden" name="countryCode" id="country_code" value="1"
                                         class="flag-modal" />
-                                    <label for="phone" class="form-label"
+                                    <label for="phone" class="form-label" 
                                         style="color: var(--text-primary); font-weight: 500;">Phone / WhatsApp</label>
-                                    <input type="tel" class="form-control w-100" id="phone" placeholder="XXX XXX XXXX"
+                                    <input type="tel" name="phone" class="form-control w-100" id="phone" placeholder="XXX XXX XXXX"
                                         style="border: 1px solid var(--border-color); padding: 8px;">
-                                    <small class="text-danger error" id="phone_error"></small>
+                                     <small class="text-danger">
+                                        <?php echo $errors['phone'] ?? ''; ?>
+                                    </small>
                                 </div>
 
                                 <div class="mb-2">
@@ -103,11 +196,14 @@
                                     <textarea class="form-control" id="project" name="message" rows="3"
                                         placeholder="Example: MVP for SaaS, AI chatbot, legacy modernization, private blockchain…"
                                         style="border: 1px solid var(--border-color); padding: 8px;"></textarea>
+                                   
 
                                 </div>
-                                <small class="text-danger error" id="message_error"></small>
+                                 <small class="text-danger">
+                                        <?php echo $errors['message'] ?? ''; ?>
+                                </small>
 
-                                <button type="button"
+                                <button type="submit"
                                     class="btn-submit btn-lg w-100 btn-white mt-3">
                                     Talk to an AI Expert
                                 </button>
