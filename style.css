@@ -12,6 +12,9 @@
     --linkColor: #474646;
 }
 
+body {
+    font-family: "Google Sans", sans-serif;
+}
 * {
     margin: 0;
     padding: 0;
@@ -44,7 +47,8 @@ img {
     border-radius: 8px;
     box-shadow: -20px 4px 10px 1px #00000029;
 }
-.form-control, .form-select {
+.form-control,
+.form-select {
     border: 2px solid var(--grayColor);
     border-radius: 5px;
     padding: 15px;
@@ -53,7 +57,8 @@ img {
     transition: all 0.3s ease;
     background-color: var(--whiteColor);
 }
-.form-control::placeholder, .form-select::placeholder {
+.form-control::placeholder,
+.form-select::placeholder {
     font-size: 14px;
     font-weight: 500;
 }
@@ -166,22 +171,22 @@ img {
     margin-bottom: 30px;
 }
 .sub-heading {
-    font-size: 52px ;
-    font-weight: 700 ;
-    line-height: 1.2 ;
-    margin-bottom: 13px ;
+    font-size: 52px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 13px;
     letter-spacing: -2px;
 }
 .build-section.webapp_box_section .app_box:hover {
     transform: translateY(-5px);
 }
 .build-section.webapp_box_section .app_box {
-    min-height: 436px;
     transition: transform 0.3s ease;
+    height: 100%;
 }
 .app_box p {
     padding: 0 30px;
-    margin: 26px 0 20px 0;
+    margin: 26px 0 20px;
 }
 .webapp_box_section .app_box p {
     font-size: 29px;
@@ -192,7 +197,7 @@ img {
     height: 69px;
 }
 .app_box ul li {
-    padding:3px 30px 10px 0;
+    padding: 3px 30px 10px 0;
     position: relative;
     font-size: 18px;
     color: var(--paragraphColor);
@@ -245,7 +250,7 @@ img {
 }
 .lets_talk {
     background: linear-gradient(97deg, rgb(8, 106, 216) 0.39%, rgb(37, 80, 212) 35.05%, rgb(31, 35, 206) 68.05%, rgb(8, 106, 216) 99.26%);
-    padding: 70px 0px;
+    padding: 70px 0;
     overflow: hidden;
 }
 .get-content h4 {
@@ -389,17 +394,18 @@ img.sportsfinda-log {
 .custom-logos img {
     height: 100px;
 }
-.app_box ul li svg{
+.app_box ul li svg {
     color: var(--netsetColor);
 }
-.app_type.webapp_box_section, .success-stories{
+.app_type.webapp_box_section,
+.success-stories {
     padding: 80px 0;
-}   
+}
 .case-item img {
     border-radius: 30px;
     width: 100%;
     height: 350px;
-        margin-bottom: 30px;
+    margin-bottom: 30px;
 }
 .case-logo img {
     width: 132px !important;
@@ -433,12 +439,9 @@ img.sportsfinda-log {
     width: fit-content;
     margin-left: 0;
 }
-.case-item h2{
-    font-size: 25px;
-    font-weight: 600;
-    margin-bottom: 30px;
-}
-.features-area .item-grid:first-child, .hire_easy aside {
+
+.features-area .item-grid:first-child,
+.hire_easy aside {
     margin-top: 50px;
 }
 .clutch-section {
@@ -450,7 +453,7 @@ img.sportsfinda-log {
     gap: 30px;
 }
 .features-area .item {
-    padding: 80px 30px 43px 30px;
+    padding: 80px 30px 43px;
     background: #fff;
     border-radius: 8px;
     position: relative;
@@ -509,7 +512,6 @@ img.sportsfinda-log {
     justify-content: center;
 }
 .netset-img img {
-    margin-bottom: 20px;
     width: 150px;
 }
 .toolbar-container {
@@ -523,7 +525,7 @@ img.sportsfinda-log {
     padding: 5px;
     background: var(--netsetColor);
     border-radius: 54px;
-    box-shadow: rgb(237 95 0) 0px 0px 14.2038px 0px, rgba(237, 95, 0, 0.41) 0px 0px 28.4077px 0px, rgb(237 95 0 / 78%) 0px 0px 44.5436px 0px;
+    box-shadow: rgb(237 95 0) 0 0 14.2038px 0, rgba(237, 95, 0, 0.41) 0 0 28.4077px 0, rgb(237 95 0 / 78%) 0 0 44.5436px 0;
 }
 .toolbar-items {
     display: flex;
@@ -596,17 +598,18 @@ img.sportsfinda-log {
     font-size: 30px;
     line-height: 36px;
     font-weight: 600;
-    color: #333;;
+    color: #333;
 }
 .new-slide {
     display: grid;
     gap: 0 14px;
     grid-template-columns: 0.5fr 3fr;
     border-radius: 16px;
-    background: var(--whiteColor);
-    align-items: start;
-    padding: 20px;
+    background: url("images/bg-card.svg") no-repeat;
+    padding: 29px;
     height: 100%;
+    background-position: top;
+    border: 1px solid #0b6bd529;
 }
 .infobox h4 {
     font-size: 26px;
@@ -636,7 +639,7 @@ img.sportsfinda-log {
 .app_box span {
     display: block;
     padding: 0 30px;
-    margin: 2px 0 20px 0;
+    margin: 2px 0 20px;
     color: black;
     font-size: 18px;
 }
@@ -672,17 +675,45 @@ img.sportsfinda-log {
 
 @media(max-width: 1199px) {
     .build-section.webapp_box_section .app_box {
-        min-height: 332px;
         margin-bottom: 21px;
     }
     .get-item {
         padding: 14px 0;
+    }
+    .service_box .services-cards .card-title {
+        font-size: 24px;
+        letter-spacing: -1px;
+    }
+    .our_service {
+        padding: 40px 0;
+    }
+    .home-casestudy-btn.new-case-button {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .service_box .services-cards {
+        padding: 17px;
+    }
+    .aboutslider.services-area-main {
+        padding: 50px 0 0;
     }
 }
 
 @media(max-width: 991px) {
     .clear-build-section {
         padding: 60px 0;
+    }
+    .new-slide {
+        padding: 21px 19px;
+    }
+    .infobox h4 {
+        font-size: 22px;
+    }
+    .lets_talk.talk-area .d-flex.align-items-center.justify-content-between.gap-3 {
+        flex-wrap: wrap;
+    }
+    .sub-heading {
+        font-size: 35px !important;
     }
     .main-lefts ul li {
         width: 264px !important;
@@ -754,6 +785,21 @@ img.sportsfinda-log {
 @media(max-width: 767px) {
     .clear-build-section {
         padding: 40px 0;
+    }
+    .action-btns {
+        display: flex;
+        flex-direction: column;
+        gap: 9px;
+    }
+    .award-section .under-recongnize-boxes {
+        transition: unset;
+    }
+    .get-content h4 {
+        font-size: 19px;
+        margin: 0;
+    }
+    .our-achievements ul li {
+        margin: 0 !important;
     }
     .main-lefts ul li {
         width: 100% !important;
@@ -838,7 +884,7 @@ img.sportsfinda-log {
     .home-casestudy-btn {
         flex-direction: column;
         gap: 11px;
-        display:   flex;
+        display: flex;
     }
 }
 
@@ -850,23 +896,42 @@ img.sportsfinda-log {
         flex-wrap: wrap;
     }
     .case-item h2 {
-    font-size: 23px;
-}
+        font-size: 23px;
+    }
     .main-heading {
         font-size: 29px;
         letter-spacing: -1.5px;
         margin-bottom: 12px;
     }
     .our_service {
-    padding: 40px 0;
-}
-.service_box .services-cards .card-title {
-    font-size: 24px;;
-}
+        padding: 40px 0;
+    }
+    .service_box .services-cards .card-title {
+        font-size: 24px;
+    }
     .clear-build-section .btn-primary-custom {
         margin-right: 0 !important;
-        margin-bottom: 11px !important;
+        margin-bottom: 0 !important;
     }
+    .get-item {
+    gap: 11px;
+}
+.webapp_box_section .app_box p {
+    height: unset;
+}
+.home-casestudy-btn.new-case-button {
+    gap: 4px;
+}
+.sub-para {
+    font-size: 19px;
+}
+.app_type.webapp_box_section, .success-stories {
+    padding: 40px 0;
+}
+.case-item h2 {
+    font-size: 20px;
+    letter-spacing: -1px;
+}
 
     .stat-item {
         padding: 12px;
@@ -957,8 +1022,14 @@ img.sportsfinda-log {
         height: 13px;
     }
     .what-you-get {
-        padding: 10px 0 52px;
+        padding: 30px 0 52px;
     }
+    .main-heading {
+    font-size: 26px;
+}
+    .lets_talk {
+    padding: 39px 0;
+}
     .who-this-is-for .new-service-box {
         height: 153px;
     }
