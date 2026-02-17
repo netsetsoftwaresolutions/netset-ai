@@ -220,6 +220,35 @@ img {
     width: 100%;
     color: #ed5f00 !important;
 }
+
+.error-message {
+    color: #dc3545;
+    font-size: 12px;
+    margin-top: 5px;
+    display: none;
+    font-weight: 500;
+}
+
+.form-control.error {
+    border-color: #dc3545 !important;
+    background-color: #fff8f8;
+}
+
+.form-control.error:focus {
+    border-color: #dc3545 !important;
+    box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
+}
+
+.form-container .thank-you-message {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.form-container .success-icon {
+    font-size: 60px;
+    margin-bottom: 20px;
+    color: #28a745;
+}
 .who-this-is-for p {
     font-size: 20px;
 }
